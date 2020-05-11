@@ -87,27 +87,8 @@ def FC_layer(mergemodel):
 	print('Fully-connected Layer created successfully...')
 	return fc
 
-'''
-def VGG():
-	input_tensor = Input(shape=(48,48,3))
-	model = VGG16(include_top=False, weights='imagenet', input_tensor=input_tensor, classes=7)
-	x = model.output
-	x = Flatten()(x)
-	x = Dense(4096, activation = 'relu')(x)
-	x = Dropout(0.5)(x)
-	x = Dense(4096, activation = 'relu')(x)
-	x = Dropout(0.5)(x)
-	x = Dense(7, activation = 'softmax')(x)
-	model = Model(model.input, x )
-	plot_model(model, to_file ='VGG.png')
-
-	return model
-'''
-
-
 #a = custom_cnn()
 #a.summary
-#print(a.load_weights('cnn_best_model_1.hdf5'))
 
 
 
