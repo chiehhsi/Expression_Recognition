@@ -44,7 +44,7 @@ def VGG_16(weights_path=None):
 	model.add(Dense(7, activation='softmax'))
 
 	#save model summary to figure
-	plot_model(model, to_file = '16.png')
+	#plot_model(model, to_file = '16.png')
 	print('VGG16 model created successfully...')
     
 	return model
