@@ -3,12 +3,17 @@
 
 ## Introduction
 
-This project proposes several aggregated model doing facial expression recognition using Facial Expression Recognition 2013(FER2013) dataset. These models based on custom CNN model and VGG16 with SIFT and Dense SIFT feature descriptors and finally aggregated differents models to see how aggregated model performance. 
+This project proposed several aggregated model doing facial expression recognition using Facial Expression Recognition 2013(FER2013) dataset. These models based on custom CNN model and VGG16 with SIFT and Dense SIFT feature descriptors and finally aggregated differents models to see how aggregated model performance. 
 
+Figure shows the overview of this project
+
+  <img src="images/overview.png" width="500">
+  
+
+  
 ## Dataset
-All the training and evaluations are done on Kaggle dataset - Facial Expression Recognition 2013 (FER2013)
-
-Input are various 48x48 resolution grayscale images (one channel), along with label corresponding to one of seven emotions, 0 = Angry, 1 = Disgust, 2 = Fear, 3 = Happy, 4 = Sad, 5 = Surprise, 6 = Neutral. [Dataset Link](https://www.kaggle.com/deadskull7/fer2013)
+All the training and evaluations are done on Kaggle dataset - *Facial Expression Recognition 2013 (FER2013)*.
+Input are various 48x48 resolution grayscale images (one channel), along with label corresponding to one of seven emotions, 0 = Angry, 1 = Disgust, 2 = Fear, 3 = Happy, 4 = Sad, 5 = Surprise, 6 = Neutral [[Dataset Link](https://www.kaggle.com/deadskull7/fer2013)]
 
 ## Classification Results
 
@@ -65,7 +70,7 @@ $ git clone https://github.com/chiehhsi/Expression_Recognition.git
 $ cd path/to/this/file
 ```
 
-### Download and Preprocess Data
+### I. Download and Preprocess Data
 
 Download the dataset file `fer2013.csv` from [here](https://www.kaggle.com/deadskull7/fer2013) and put in the root folder of this package.
 
@@ -74,16 +79,29 @@ Preprocess the data and create `dataX.npy` and `dataY.npy` inside root folder
 $ python3 preprocessing.py
 ```
 
-### Feature Descriptor
-The SIFT/ Dense SIFT descriptors can be found by either from exisiting files or building from scratch
+### II. Feature Descriptors
+
+Make sure there are `sift_histogram.npy` and `d_sift.npy` under `Result` file for SIFT/ Dense SIFT descriptors
+
+These two files can be found by either from exisiting files or building from scratch
+
 1. Get the descriptors by scratch
-  
 
+   If you directly launch the train models, then it will automatically generate otherwise comment out the buttom line inside `feature_extraction.py` and simply run 
+   ```
+   $ python3 feature_extraction.py
+   ```
+   you will get two `.npy` files for SIFT and Dense SIFT descriptors.
+   
+   Besides, the command will also produce `pics` file containing all 48\*48 pixels grayscale figures from FER2013 dataset about size 54.7 MB 
+   
 2. Existing file
+   
+   Details refer to `Result/README.txt` [here](https://github.com/chiehhsi/Expression_Recognition/tree/master/Result)
 
-Make sure there are `sift_histogram.npy` and `d_sift.npy`
+ 
 
-### Train Model
+### III. Train Models
 
 Launch training: 
 ```
@@ -94,31 +112,29 @@ There are also optional arguments according to the needs:
 - `--epochs` (int) : Number of epochs to run,  **default = 100**
 - `--batchsize` (int) : Number of images to process in a batch,  **default = 100**
 
-e.g `python3 training_model.py --model svgg --epochs 200`
+e.g `$ python3 training_model.py --model svgg --epochs 200`
 
 The `model.py` defined the structure of CNN model and layers; `model_vgg.py` is for VGG16.
 
-The program can be run in two method:
+The built models in this project can found [here](https://github.com/chiehhsi/Expression_Recognition/tree/master/Result) which can be downloaded and use them directly. Make sure all files are under `Result` folder instead the unzip located files.
 
-1. Using built model
-
-If
-```bash
-
+When facing interrupted during training, as the repository already has `model.json`(trained model) and `model.hdf5`(parameters) simply run to resume the training process
+```
+$ python3 resume_train.py
 ```
 
-2. Build from scratch
-If you don't want to train the classifier from scratch, you can make the use of fertestcustom.py directly as the the repository already has fer.json (trained model) and fer.h5 (parameters) which can be used to predict emotion on any test image present in the folder. You can modify fertestcustom.py according to your requirements and use it to predict fatial emotion in any use case.
+Every `.py`, model structure, and parameters can be modify according to users' needs.
 
-pics files about 57.4MB
+### IV. Test Models
 
-### Test Models
+To get the test accuracy and results of confusion matrix.  Run command below produces the accuracy with confusion matrix, e.g. `ConfusionMatrix\*.png`.
 
-To get the test accuracy and the confusion matrix
 ```bash
 python3 predict.py
 ```
 
+If error occurs, please check if there exists `.json` and `.hdf5` files for the same model under `Result` folder which has been generated automatically if the training finished successfully. Otherwise, please rerun training process or download existing models. **Train Models** section has more details.
+
 ## References
 
-Mundher Al-Shabi, ooi Ping Cheah, Tee Connie, {\it Facial Expression Recognition Using a Hybrid {CNN-SIFT}} (arXiv 1608.02833, 2016)
+Mundher Al-Shabi, ooi Ping Cheah, Tee Connie, **Facial Expression Recognition Using a Hybrid CNN-SIFT Aggregator** [[arXiv1608.02833](https://arxiv.org/abs/1608.02833)]
