@@ -122,7 +122,10 @@ When facing interrupted during training, as the repository already has `model.js
 ```bash
 $ python3 resume_train.py
 ```
-The training history is saved in `model_histo.npy` files, change the filepath inside `plotgraph.py` and run `$ python3 plotgraph.py` to get the plotting results of the accuracy and loss for training process.
+The training history is saved in `model_histo.npy` files, change the filepath inside `plotgraph.py`. Run the command to get the plotting results of the accuracy and loss for training process.
+```bash
+$ python3 plotgraph.py
+```
 
 Every `.py`, model structure, and parameters can be modify according to users' needs.
 
