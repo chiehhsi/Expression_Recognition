@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This project proposed several aggregated model doing facial expression recognition using Facial Expression Recognition 2013(FER2013) dataset. These models based on custom CNN model and VGG16 with SIFT and Dense SIFT feature descriptors and finally aggregated differents models to see how aggregated model performance. 
+This project proposed several aggregated models doing facial expression recognition on Facial Expression Recognition 2013(FER2013) dataset. These models based on custom CNN model and VGG16 with SIFT and Dense SIFT feature descriptors and aggregated different models to see how aggregated model performance at the end. 
 
 Figure shows the overview of this project
 
@@ -52,7 +52,7 @@ Input are various 48x48 resolution grayscale images (one channel), along with la
 
 ## Prerequisites
 
-Make sure installed these prerequisites before running the code. The installation can be done using `pip`
+Make sure installed these prerequisites before running the code. The installation can be done by using `pip`
 ```bash
 - Python 3.7.6
 - matplotlib 3.1.2 
@@ -64,7 +64,7 @@ Make sure installed these prerequisites before running the code. The installatio
 
 ## Usages
 
-Clone this file and run the following program using - 
+Clone this file and run the following program using 
 ```bash
 $ git clone https://github.com/chiehhsi/Expression_Recognition.git
 $ cd path/to/this/file
@@ -81,7 +81,7 @@ $ python3 preprocessing.py
 
 ### II. Feature Descriptors
 
-Make sure there are `sift_histogram.npy` and `d_sift.npy` under `Result` file for SIFT/ Dense SIFT descriptors
+Make sure there are `sift_histogram.npy` and `d_sift.npy` under `Result` folder for SIFT/ Dense SIFT descriptors respectively
 
 These two files can be found by either from exisiting files or building from scratch
 
@@ -95,7 +95,7 @@ These two files can be found by either from exisiting files or building from scr
    
    Besides, the command will also produce `pics` file containing all 48\*48 pixels grayscale figures from FER2013 dataset about size 54.7 MB 
    
-2. Existing file
+2. Existing files
    
    Details refer to `Result/README.txt` [here](https://github.com/chiehhsi/Expression_Recognition/tree/master/Result)
 
@@ -103,7 +103,7 @@ These two files can be found by either from exisiting files or building from scr
 
 ### III. Train Models
 
-Launch training: 
+Launch training 
 ```
 $ python3 training_model.py
 ```
@@ -112,13 +112,13 @@ There are also optional arguments according to the needs:
 - `--epochs` (int) : Number of epochs to run,  **default = 100**
 - `--batchsize` (int) : Number of images to process in a batch,  **default = 100**
 
-e.g `$ python3 training_model.py --model svgg --epochs 200`
+e.g. `$ python3 training_model.py --model svgg --epochs 200`
 
 The `model.py` defined the structure of CNN model and layers; `model_vgg.py` is for VGG16.
 
 The built models in this project can found [here](https://github.com/chiehhsi/Expression_Recognition/tree/master/Result) which can be downloaded and use them directly. Make sure all files are under `Result` folder instead the unzip located files.
 
-When facing interrupted during training, as the repository already has `model.json`(trained model) and `model.hdf5`(parameters) simply run to resume the training process
+When facing interrupted during training, as the repository already has `model.json`(trained model) and `model.hdf5`(parameters) simply run the command to resume the training process
 ```
 $ python3 resume_train.py
 ```
@@ -127,14 +127,14 @@ Every `.py`, model structure, and parameters can be modify according to users' n
 
 ### IV. Test Models
 
-To get the test accuracy and results of confusion matrix.  Run command below produces the accuracy with confusion matrix, e.g. `ConfusionMatrix\*.png`.
+To get the test accuracy and results of confusion matrix.  Run command below produces the accuracy and confusion matrix for each model, e.g. `ConfusionMatrix\*.png`.
 
 ```bash
 python3 predict.py
 ```
 
-If error occurs, please check if there exists `.json` and `.hdf5` files for the same model under `Result` folder which has been generated automatically if the training finished successfully. Otherwise, please rerun training process or download existing models. **Train Models** section has more details.
+If error occurs, please check if there exists `.json` and `.hdf5` files for the same model under `Result` folder, which has been generated automatically if the training finished successfully. Otherwise, please rerun the training process or download built models. **Train Models** section has more details.
 
 ## References
 
-Mundher Al-Shabi, ooi Ping Cheah, Tee Connie, **Facial Expression Recognition Using a Hybrid CNN-SIFT Aggregator** [[arXiv1608.02833](https://arxiv.org/abs/1608.02833)]
+- Mundher Al-Shabi, ooi Ping Cheah, Tee Connie, **Facial Expression Recognition Using a Hybrid CNN-SIFT Aggregator** [[arXiv1608.02833](https://arxiv.org/abs/1608.02833)]
