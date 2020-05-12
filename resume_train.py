@@ -40,15 +40,15 @@ data_generator = ImageDataGenerator(
         horizontal_flip=True)
 
 #loading model
-json_model = open("dcnn.json", 'r')
+json_model = open("Result/cnn.json", 'r')
 loaded_json_model = json_model.read()
 json_model.close()
 model = model_from_json(loaded_json_model)
-model.load_weights("dcnn50.hdf5")
+model.load_weights("Result/cnn_model.hdf5")
 
 print('Model Loaded!')
 print('Resume Training...')
-checkpoint = ModelCheckpoint("DF.hdf5", monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
+checkpoint = ModelCheckpoint("Result/cnn_model.hdf5", monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
 early_stop = EarlyStopping(monitor='val_accuracy', patience=100,mode='max')
 callbacks_list = [checkpoint, early_stop]
 model.compile(loss='categorical_crossentropy',
@@ -66,8 +66,8 @@ dsift_histo = model.fit_generator(data_generator.flow(input_data,y_train,
 )
 
 model_json = model.to_json()
-with open("DF.json", 'w') as file:
+with open("Result/cnn.json", 'w') as file:
     file.write(model_json)
-model.save_weights("DF.h5")
-np.save('DF', dsift_histo)
+np.save('Result/cnn_histo.npy', dsift_histo)
+print('cnn_histo.npy has been saved!')
 print('Model saved!')

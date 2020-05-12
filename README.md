@@ -88,7 +88,7 @@ These two files can be found by either from exisiting files or building from scr
 1. Get the descriptors by scratch
 
    If you directly launch the train models, then it will automatically generate otherwise comment out the buttom line inside `feature_extraction.py` and simply run 
-   ```
+   ```bash
    $ python3 feature_extraction.py
    ```
    you will get two `.npy` files for SIFT and Dense SIFT descriptors.
@@ -104,7 +104,7 @@ These two files can be found by either from exisiting files or building from scr
 ### III. Train Models
 
 Launch training 
-```
+```bash
 $ python3 training_model.py
 ```
 There are also optional arguments according to the needs:
@@ -119,9 +119,10 @@ The `model.py` defined the structure of CNN model and layers; `model_vgg.py` is 
 The built models in this project can found [here](https://github.com/chiehhsi/Expression_Recognition/tree/master/Result) which can be downloaded and use them directly. Make sure all files are under `Result` folder instead the unzip located files.
 
 When facing interrupted during training, as the repository already has `model.json`(trained model) and `model.hdf5`(parameters) simply run the command to resume the training process
-```
+```bash
 $ python3 resume_train.py
 ```
+The training history is saved in `model_histo.npy` files, change the filepath inside `plotgraph.py` and run `$ python3 plotgraph.py` to get the plotting results of the accuracy and loss for training process.
 
 Every `.py`, model structure, and parameters can be modify according to users' needs.
 
@@ -130,7 +131,7 @@ Every `.py`, model structure, and parameters can be modify according to users' n
 To get the test accuracy and results of confusion matrix.  Run command below produces the accuracy and confusion matrix for each model, e.g. `ConfusionMatrix\*.png`.
 
 ```bash
-python3 predict.py
+$ python3 predict.py
 ```
 
 If error occurs, please check if there exists `.json` and `.hdf5` files for the same model under `Result` folder, which has been generated automatically if the training finished successfully. Otherwise, please rerun the training process or download built models. **Train Models** section has more details.
