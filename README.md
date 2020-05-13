@@ -5,7 +5,7 @@
 
 This project proposed several aggregated models doing facial expression recognition on Facial Expression Recognition 2013(FER2013) dataset. These models based on custom CNN model and VGG16 with SIFT and Dense SIFT feature descriptors and aggregated different models to see how aggregated model performance at the end. 
 
-Figure shows the overview of this project
+Figure shows the overview of this project:
 
   <img src="images/overview.png" width="500">
   
@@ -15,6 +15,10 @@ Figure shows the overview of this project
 All the training and evaluations are done on Kaggle dataset - *Facial Expression Recognition 2013 (FER2013)*.
 Input are various 48x48 resolution grayscale images (one channel), along with label corresponding to one of seven emotions, 0 = Angry, 1 = Disgust, 2 = Fear, 3 = Happy, 4 = Sad, 5 = Surprise, 6 = Neutral [[Dataset Link](https://www.kaggle.com/deadskull7/fer2013)]
 
+Example figures for FER2013 dataset:
+
+ <img src="images/samples.png" width="320">
+ 
 ## Classification Results
 
 - Training result:
